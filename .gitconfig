@@ -1,3 +1,4 @@
+
 [core]
 	autocrlf = true
 [alias]
@@ -5,6 +6,8 @@
 	f = fetch
 	cm = commit -m
 	co = checkout
+	fix = commit --fixup
+	rf = rebase --interactive --autosquash
 	
 	c = clean -xdf
 	
@@ -21,3 +24,4 @@
 	
 	trim = !"git remote prune origin"
 	tidy = !"git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D"
+
