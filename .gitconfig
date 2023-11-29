@@ -23,7 +23,7 @@
 	recommit = !"git commit --amend --no-edit"
 	uncommit = !"git reset --soft HEAD^"
 	
-	punch = !"git push --force"
+	punch = !"git push --force-with-lease"
 	
 	nuke = !sh -c 'git branch -D $1 && git push origin :$1' -
 	
@@ -32,6 +32,19 @@
 	
 	# delete local branches that have no remote anymore
 	tidy = !"git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D"
+	
+	
+	# lists all feature/* branches which are not up to date
+	behind = "!f() { \
+		git fetch origin develop; \
+		for branch in $(git branch --list 'feature/*' | sed 's/\\* //'); do \
+			if git merge-base --is-ancestor origin/develop \"$branch\"; then \
+				echo \"$branch is up-to-date with origin/develop\"; \
+			else \
+				echo \"$branch is behind origin/develop\"; \
+			fi; \
+		done; \
+    }; f"
 
 [user]
 	name = Steiner Marcel
