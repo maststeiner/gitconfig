@@ -1,0 +1,37 @@
+version: 1.1
+dockerEndpoint: npipe://./pipe/docker_engine
+imageConfigs:
+- identifier: GL
+  imageName: nuget.kms-ag.ch/nestdocker/library/nestsynthetictestcases-gl
+  imageTags:
+  - master
+  - 20216
+  - 20215
+  - 20214
+  ports:
+  - 1521:1521
+- identifier: cleverTax
+  imageName: mcr.microsoft.com/mssql/server
+  imageTags:
+  - 2019-CU15-ubuntu-20.04
+  ports:
+  - 1433:1433
+  environment:
+  - ACCEPT_EULA=Y
+  - SA_PASSWORD=cleverTax@kms2022
+- identifier: egov
+  imageName: mcr.microsoft.com/mssql/server
+  imageTags:
+  - 2019-CU15-ubuntu-20.04
+  ports:
+  - 1443:1433
+  environment:
+  - ACCEPT_EULA=Y
+  - SA_PASSWORD=eGov@kms2023
+- identifier: egovmq
+  imageName: rabbitmq
+  imageTags:
+  - 3.12-management-alpine
+  ports:
+  - 5672:5672
+  - 15672:15672
