@@ -10,7 +10,16 @@ imageConfigs:
   - 20214
   ports:
   - 1521:1521
-- identifier: cleverTax
+- identifier: cleverTax_jp
+  imageName: mcr.microsoft.com/mssql/server
+  imageTags:
+  - 2019-CU15-ubuntu-20.04
+  ports:
+  - 1433:1433
+  environment:
+  - ACCEPT_EULA=Y
+  - SA_PASSWORD=cleverTax@kms2022
+- identifier: cleverTax_np
   imageName: mcr.microsoft.com/mssql/server
   imageTags:
   - 2019-CU15-ubuntu-20.04
@@ -34,4 +43,3 @@ imageConfigs:
   - 3.12-management-alpine
   ports:
   - 5672:5672
-  - 15672:15672
